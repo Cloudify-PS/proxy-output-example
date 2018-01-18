@@ -32,8 +32,8 @@ node_templates:
 outputs:
   proxy_out_test1:
     description: Example of proxy output
-    value: { get_attribute: [ proxy_output, outputs, out_test1 ] }
+    value: { get_attribute: [ proxy_output, deployment, outputs, out_test1 ] }
 
   proxy_out_test2:
     description: Example of proxy output
-    value: { get_attribute: [ proxy_output, outputs, out_test2 ] }
+    value: { get_attribute: [ proxy_output, deployment, outputs, out_test2 ] }
