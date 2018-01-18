@@ -12,7 +12,7 @@ node_templates:
       resource_config:
         blueprint:
           id: "proxy-output"
-          blueprint_archive: "archive.tar.gz"
+          blueprint_archive: "https://github.com/Cloudify-PS/proxy-output-example/archive/master.zip"
           main_file_name: proxy-output.yaml
         deployment:
           id: "proxy-output"
