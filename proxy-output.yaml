@@ -1,0 +1,43 @@
+﻿tosca_definitions_version: cloudify_dsl_1_3
+
+imports:
+  - http://www.getcloudify.org/spec/cloudify/4.1.1.1/types.yaml
+
+
+dsl_definitions:
+
+inputs:
+
+  test_input1:
+    default: test_1
+
+  test_input2:
+    default: test_2
+
+
+
+node_types:
+  type1:
+    derived_from: cloudify.nodes.Root
+    properties:
+      prop_test1:
+        default: { get_input: test_input1 }
+      prop_test2:
+        default: { get_input: test_input2 }
+
+node_templates:
+
+  test_node:
+    type: type1
+
+
+outputs:
+  out_test1:
+    description: "Output of test_node property prop_test1"
+    value: { get_property: [ test_node, prop_test1 ] }
+
+  out_test2:
+    description: "Output of test_node property prop_test2"
+    value:
+     prop_test2: { get_property: [ test_node, prop_test2 ] }
+

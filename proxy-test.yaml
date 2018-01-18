@@ -1,0 +1,38 @@
+﻿tosca_definitions_version: cloudify_dsl_1_3
+
+imports:
+  - http://www.getcloudify.org/spec/cloudify/4.1.1.1/types.yaml
+  - https://raw.githubusercontent.com/cloudify-incubator/cloudify-utilities-plugin/1.4.3/plugin.yaml
+
+node_templates:
+
+  proxy_output:
+    type: cloudify.nodes.DeploymentProxy
+    properties:
+      resource_config:
+        blueprint:
+          id: "proxy-output"
+          blueprint_archive: "archive.tar.gz"
+          main_file_name: proxy-output.yaml
+        deployment:
+          id: "proxy-output"
+          outputs:
+            out_test1: out_test1
+            out_test2: out_test2
+          logs:
+            redirect: false
+    interfaces:
+      cloudify.interfaces.lifecycle:
+        start:
+         inputs:
+           test_input1: proxy_test_1
+           test_input2: proxy_test_2
+
+outputs:
+  proxy_out_test1:
+    description: Example of proxy output
+    value: { get_attribute: [ proxy_output, outputs, out_test1 ] }
+
+  proxy_out_test2:
+    description: Example of proxy output
+    value: { get_attribute: [ proxy_output, outputs, out_test2 ] }
