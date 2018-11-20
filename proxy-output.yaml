@@ -1,19 +1,15 @@
 ﻿tosca_definitions_version: cloudify_dsl_1_3
 
 imports:
-  - http://www.getcloudify.org/spec/cloudify/4.1.1.1/types.yaml
-
-
-dsl_definitions:
+  - http://www.getcloudify.org/spec/cloudify/4.5/types.yaml
 
 inputs:
 
   test_input1:
-    default: test_1
+    type: string
 
   test_input2:
-    default: test_2
-
+    type: string
 
 
 node_types:
@@ -25,8 +21,8 @@ node_types:
       prop_test2:
         default: { get_input: test_input2 }
 
-node_templates:
 
+node_templates:
   test_node:
     type: type1
 
@@ -40,4 +36,3 @@ outputs:
     description: "Output of test_node property prop_test2"
     value:
      prop_test2: { get_property: [ test_node, prop_test2 ] }
-

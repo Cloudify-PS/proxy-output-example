@@ -1,10 +1,9 @@
 ﻿tosca_definitions_version: cloudify_dsl_1_3
 
 imports:
-  - http://www.getcloudify.org/spec/cloudify/4.1.1.1/types.yaml
-#  - https://raw.githubusercontent.com/cloudify-incubator/cloudify-utilities-plugin/1.4.4/plugin.yaml
-  - http://www.getcloudify.org/spec/utilities-plugin/1.4.4/plugin.yaml
-  
+  - http://www.getcloudify.org/spec/cloudify/4.5/types.yaml
+  - plugin:cloudify-utilities-plugin?version=1.10.0&distribution=redhat
+
 node_templates:
 
   proxy_output:
@@ -17,6 +16,9 @@ node_templates:
           main_file_name: proxy-output.yaml
         deployment:
           id: "proxy-output"
+          inputs:
+            test_input1: test1
+            test_input2: test2
           outputs:
             out_test1: out_test1
             out_test2: out_test2
