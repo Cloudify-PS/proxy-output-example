@@ -4,6 +4,13 @@ imports:
   - http://www.getcloudify.org/spec/cloudify/4.5/types.yaml
   - plugin:cloudify-utilities-plugin?version=1.10.0&distribution=redhat
 
+inputs:
+  test1_input:
+    default: test1
+
+  test2_input:
+    default: test2
+
 node_templates:
 
   proxy_output:
@@ -17,8 +24,8 @@ node_templates:
         deployment:
           id: "proxy-output"
           inputs:
-            test_input1: test1
-            test_input2: test2
+            test_input1: { get_input: test1_input }
+            test_input2: { get_input: test2_input }
           outputs:
             out_test1: out_test1
             out_test2: out_test2
